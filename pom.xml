@@ -90,10 +90,18 @@
         </dependency>
 
 
-        <!--use for logback if-else-->
+        <!--for logback if-else-->
         <dependency>
             <groupId>org.codehaus.janino</groupId>
             <artifactId>janino</artifactId>
+        </dependency>
+
+        <!--for Lombok-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.8</version>
+            <scope>provided</scope>
         </dependency>
 
 

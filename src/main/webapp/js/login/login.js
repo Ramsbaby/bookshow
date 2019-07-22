@@ -18,9 +18,7 @@ var Main = {
 		observe: function() {
 			$('#password').on('keypress', function(event) { if(event.keyCode == 13) {Main.login(); return false;} return; });
 			$('#btnLogin').bind('click', function(event) { Main.eventControl(event); });
-			$('#btnEngineer').bind('click', function(event) { Main.eventControl(event); });
 			$('#btnAccount').bind('click', function(event) { Main.eventControl(event); });
-			$('#btnGoSubPolice').bind('click', function(event) { Main.eventControl(event); });
 		},
 		
 		/** event handler */
@@ -44,13 +42,13 @@ var Main = {
 		/** login */
 		login: function() {
 			var obj = $('#userId');
-			if($.isBlank(obj.val())) {
+			if(obj.val().isBlank()) {
 				alert('ID를 입력해주세요.');
 				obj.focus();
 				return;
 			}
 			obj = $('#password');
-			if($.isBlank(obj.val())) {
+			if(obj.val().isBlank()) {
 				alert('Password를 입력해주세요.');
 				obj.focus();
 				return;
@@ -59,15 +57,8 @@ var Main = {
 			Server.post('/login/prcsLogin.do', {
 				data: { userId: $('#userId').val(), password: $('#password').val() },
 				success: function(data) {
-					var mainUrl = null;
-					switch(data.siteName) {
-					case 'Samsung': // 삼성전자
-						mainUrl = '/samsung/main.do'; break;
-					default:
-						mainUrl = '/main2.do'
-						break;
-					}
-					location.href = ctxPath + mainUrl;
+					var mainUrl = '/main/bookSearch.do'
+					location.href = mainUrl;
 				}
 			});
 		},

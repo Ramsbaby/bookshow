@@ -39,14 +39,17 @@ var UserAdd = {
     	Server.get('/login/userConf/addAccount.do', {
     		data: $("#popupAddForm").serialize(),
     		success: function(data) {
-    			alert("등록 되었습니다 ");
-    			$('#pwindow').jqxWindow('close');
+                alert(data);
+
+    			if(data.indexOf("중복") == -1)
+					self.close();
+    			else
+                    $("#pUserId").focus();
     		}
     	});
     },
     validateForm: function() {
     	var obj = $("#pUserId");
-    	console.log(obj.val());
     	if(obj.val().isBlank()) {
     		alert("아이디를 입력해주세요.");
     		obj.focus();

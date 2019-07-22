@@ -1,22 +1,22 @@
 package com.jwlee.bookshow.webapp.common;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.EntityListeners;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+@ToString
 @MappedSuperclass
-@EntityListeners(AuditingEntityListener.class)
 public class AbstractEntity {
 
-    @Id
     @GeneratedValue
     @JsonProperty
     private Long id; // id
@@ -63,12 +63,4 @@ public class AbstractEntity {
         return id != null ? id.hashCode() : 0;
     }
 
-    @Override
-    public String toString() {
-        return "AbstractEntity{" +
-                "id=" + id +
-                ", createDate=" + createDate +
-                ", modifiedDate=" + modifiedDate +
-                '}';
-    }
 }

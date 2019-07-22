@@ -1,0 +1,1194 @@
+/**=======================
+	서브페이지
+	
+	1. 작성자: 강연아
+	2. 생성일자: 2016-03-30
+	3. 수정일자: 2016-08-26
+	   - 중메뉴 가운데정렬로변경
+	   - 소메뉴 오버 효과 변경 
+	   
+======================== */
+
+
+body, html {
+	background: #FFF;
+	font-size: 13px;
+	font-family: Malgun Gothic,'맑은고딕',Verdana, Helvetica, Sans-Serif;
+	margin: 0;
+	padding: 0;
+	color: #444;
+	width: 100%;
+	height: 100%; /*
+	min-width: 1280px;*/
+	overflow: auto;
+}
+
+body.wait *, body.wait {
+	cursor: progress !important;
+}
+
+table {
+	width: 100%;
+	border: 1px;
+	border-spacing: 0;
+}
+
+select {
+	border: 1px solid #ccc;
+	padding: 2px;
+	font-size: 12px;
+	color: #444;
+	font-family: "맑은 고딕", dotum, "Trebuchet MS", Verdana, Helvetica,
+		Sans-Serif;
+}
+
+img {
+	border: 0;
+	vertical-align: middle;
+}
+
+ul, li {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+/* input[type="text"], input[type="password"] { */
+/*  border: 1px solid #939393;; */
+/* 	padding: 1px 2px 1px 2px; */
+/* 	font-size: 1em; */
+/* 	height: 20px; */
+/* 	color: #444; */
+/* 	font-family: "맑은 고딕", dotum, "Trebuchet MS", Verdana, Helvetica, */
+/* 		Sans-Serif; */
+/* } */
+
+.jqx-widget-content {
+	font-size: 12px;
+	
+}
+/** jqxTreeGrid border 제거 -	by jungwoolee */
+.jqx-grid-table .jqx-grid-cell {
+	border-color: transparent;
+}
+
+/**=======================
+	layout
+======================== */
+#header {
+	width: 100%;
+	height: 0px;
+	position: relative;
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+
+#nav {
+	width: 100%;
+	height: 60px;
+	float: left;
+	min-width:1600px;
+}
+
+#section {
+	position: absolute;
+	left: 0;
+	top: 60px;
+	right: 0;
+	bottom: 0;
+	min-width: 1280px;
+	min-height: 720px;
+	overflow: auto;
+}
+
+#loc{margin-right: 10px;}
+
+/* 왼쪽 트리 */
+#section .left {
+	width: 250px;
+	height: 100%;
+	border-right: 1px solid #ccc;
+}
+
+.leftTitle {
+	height: 4%;
+	border:1px solid #ffffff;
+	background: #22516d;
+	color: #ffffff;
+	font-size: 15px;
+	line-height: 30px;
+	font-family: "맑은 고딕", dotum, "Trebuchet MS", Verdana, Helvetica, Sans-Serif;
+	text-align: center;
+	font-weight: bold;
+}
+
+.leftCont {
+	width: 250px;
+	height: 96%;
+}
+
+.rightCont {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+#leftTab {
+	border: none;
+}
+
+#grpTreeGrid {
+	border: none;
+}
+
+/* 오른쪽 그리드*/
+#section .right {
+	left: 250px;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	position: absolute;
+	background: #ffffff;
+	border-left: 1px solid #737373;
+}
+
+#section .loc {
+	width: 100%;
+	height: 38px;
+	float: left;
+}
+
+/* 버튼 위치 */
+#section .search {
+	width: 100%;
+	height: 30px;
+	float: left;
+	position: relative;
+	background: url('../img/topSearchPtn.gif') repeat-x;
+	background-size: 100% 100%;
+}
+
+.searchArea {
+	padding: 4px 0 0 15px;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 999;
+}
+
+.searchArea label {
+	padding-top: 5px;
+}
+
+.searchBtn {
+	position: absolute;
+	top: 2px;
+	right: 8px;
+/* 	z-index: 999;  //18.05.30 주석처리. zindex문제생겼을시 풀기*/
+}
+
+/*컨텐츠 부분 */
+#section .content {
+	left: 0;
+	top: 38px;
+	right: 0;
+	bottom: 0;
+	position: absolute;
+}
+
+.content {
+	left: 0;
+	top: 28px;
+	right: 0;
+	bottom: 0;
+	position: absolute;
+}
+
+#section .scontent {
+	left: 0px;
+	top: 70px;
+	right: 0px;
+	bottom: 0px;
+	position: absolute;
+}
+
+#section .scontent2 {
+	left: 0px;
+	top: 105px;
+	right: 0px;
+	bottom: 0;
+	position: absolute;
+}
+
+.contentsP5 {
+	left: 5px;
+	top: 5px;
+	right: 5px;
+	bottom: 5px;
+	position: absolute;
+
+}
+
+.contentsP10 {
+	left: 10px;
+	top: 10px;
+	right: 10px;
+	bottom: 10px;
+	position: absolute;
+	
+}
+
+.contentsP20 {
+	left: 10px;
+	top: 40px;
+	right: 10px;
+	bottom: 10px;
+	position: absolute;
+	
+}
+
+#groupType, #btnGrpType_devRpt, #btnGrpType_resTime,
+	#btnGrpType_sectPerf, #btnGrpType_routeMonitoring {
+	padding-left: 10px;
+	cursor: pointer;
+}
+
+#assetGrid {
+	width: 100%;
+}
+
+.grpTitle {
+	padding-left: 15px;
+	background: url('../img/p_search.png') no-repeat 0 3px;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+
+
+/* ap컨트롤러 */
+.CountBlock {
+	flaot: left;
+	font-family: "맑은 고딕", dotum, "Trebuchet MS", Verdana, Helvetica,
+		Sans-Serif;
+}
+
+.CountBlock>ul {
+	float: left;
+	width: 100%;
+	line-height: 66px;
+	width: 25%;
+	height: 70px;
+	position: relative;
+}
+
+.CountBlock>ul>li {
+	float: left;
+}
+
+.apImg {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.Count {
+	font-size: 18px;
+	color: #fff;
+	font-weight: bold;
+	width: 150px;
+}
+
+.CountText {
+	float: left;
+	color: #ffffff;
+}
+
+.CountText2 {
+	float: left;
+	padding-left: 20px;
+	font-size: 20px;
+	color: #fff000;
+	font-weight: bold;
+	text-align: right;
+}
+
+/* 타이틀 */
+.titleArea {
+	padding-left: 10px;
+	height: 38px;
+	background: #ffffff;
+	/*border-bottom: 1px solid #a2a1a7;*/
+}
+
+.mainTitle {
+	height: 31px;
+	padding: 7px 0px 0px 20px;
+	font-size: 16px;
+	font-weight: bold;
+	background: url('../img/p_title_gray.png') no-repeat 0px 12px;;
+	font-family: "맑은 고딕", dotum, "Trebuchet MS", Verdana, Helvetica,
+		Sans-Serif;
+	color: #000000;
+}
+
+.policyTitle {
+	padding-top: 10px;
+}
+
+/* 현재위치 */
+.history {
+	text-align: right;
+	margin-top: -30px;	
+}
+.homeIcon{
+	background: url('../img/historyIcon.gif') no-repeat 0px 3px;
+	padding-left: 17px;
+}
+
+/* 검색 */
+.newBox {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.searchBox {
+	position: relative;
+	float: left;
+	padding: 5px 0 5px 0;
+	width: 100%;
+	height: 23px;
+	background: #f3f3f3;
+	border-top: 1px solid #036ca5;;
+	border-left: 1px solid #dbdada;
+	border-right: 1px solid #dbdada;
+	border-bottom: 1px solid #dbdada;
+}
+
+.searchBox2 {
+	border-top: 1px solid #dbdada;
+}
+
+.searchBox>* {
+	float: left;
+}
+
+.searchBox input.radio {
+	margin-bottom: -2px;
+	padding: 0;
+}
+
+.searchBox input.checkbox {
+	margin-bottom: -2px;
+	padding: 0;
+	border: 1px solid red;
+}
+
+.searchBox input.text {
+	margin: 0;
+	padding: .4em .5em .3em .5em;
+	width: 200px;
+	height: 23px;
+	line-height: normal;
+	border: 1px solid #aaa;
+	color: #444;
+}
+
+.searchBox select {
+	margin: 0;
+	padding: .4em .5em .3em .5em;
+	width: 200px;
+	height: auto;
+	line-height: normal;
+	border: 1px solid #aaa;
+	color: #444;
+}
+
+.searchBox label {
+	margin: 3px 5px 10px 5px;
+	font-weight: bold;
+	float: left;
+}
+
+.searchBox label:first-child {
+	padding-left: 15px;
+	background: url('../img/p_search.png') no-repeat 0 3px;
+}
+
+.searchBox .jqx-checkbox {
+	padding-top: 2px
+}
+
+.searchBox .jqx-checkbox-default {
+	margin-top: 2px;
+}
+
+.searchTitle {
+	width: 63px;
+	height: 26px;
+	padding: 8px 0 0 37px;
+	margin: -5px 10px 0 0;
+	color: #666;
+	font-weight: bold;
+	background: #e4e4e4 url('../img/searchIcon.gif') no-repeat 15px 8px;
+}
+
+#cbPeriod {
+	margin-left: 10px;
+}
+
+#twoBox {
+	height: 57px;
+}
+
+#btnViewType, #btnViewType, #realtimeType, #ddbGrp, #ddbDev, #prgrsBar,
+	#data1, #data2, #time1, #time2, .prgrsBar, .refreshCycleCb, #startMMCb,
+	#endMMCb {
+	float: left;
+}
+
+/**placeholder*/
+/* all */
+input::-webkit-input-placeholder {
+	font-style: italic;
+	color: gray !important;
+} /*webkit*/
+input::-moz-placeholder {
+	font-style: italic;
+	color: gray !important;
+} /* firefox 19+ */
+input:-ms-input-placeholder {
+	font-style: italic;
+	color: gray !important;
+} /* ie */
+input:-moz-placeholder {
+	font-style: italic;
+	color: gray !important;
+}
+
+/* .left {float:left;} */
+/* .right {float:right;} */
+/* .clear {clear:both;} */
+/* .center {text-align:center;} */
+.bold {
+	font-weight: bold;
+}
+
+.policyTitle {
+	height: 23px;
+	text-align: left;
+	font-weight: bold;
+}
+
+.policyTblBox {
+	border: 2px solid #ccdfe6;
+	border-collapse: collapse;
+	text-align: left;
+}
+
+.policySubtitle {
+	padding-left: 10px;
+	border: 1px solid #cbdee5;
+	font-size: 11px;
+	color: #2e6e9e;
+	font-weight: bold;
+	background-color: #f0f5fa;
+}
+
+.policySubcontent {
+	background-color: #ffffff;
+	padding-left: 10px;
+	border: 1px solid #cbdee5;
+	color: #767676;
+}
+
+/** jQuery Mega Menu (메뉴) Start */
+.mega-menu ul, .mega-menu ul li {
+	list-style: none;
+}
+
+.mega-menu ul {
+	position: relative;
+	padding: 0;
+	margin: 0;
+}
+
+.mega-menu ul li ul {
+	display: none;
+}
+
+.mega-menu .sub {
+	display: none;
+}
+
+.mega-menu .sub ul {
+	display: block;
+}
+
+.netismenu {
+	font: normal 13px 맑은 고딕, Arial, sans-serif;
+	line-height: 23px;
+	float:left;
+}
+
+.netismenu ul.mega-menu, .netismenu ul.mega-menu, .netismenu ul.mega-menu li
+	{
+	margin: 0;
+	padding: 0;
+	border: none;
+}
+
+.netismenu ul.mega-menu {
+	height: 52px;
+	position: relative;
+}
+
+.netismenu ul.mega-menu li {
+	float: left;
+	margin: 0;
+	padding: 0;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.netismenu ul.mega-menu li a {
+	float: left;
+	display: block;
+	color: #fff;
+	padding: 14px 25px 19px 28px;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+	text-decoration: none;
+	background: url(../lib/megamenu/skins/images/sub_line_gray.png) no-repeat 2px;
+}
+
+.netismenu ul.mega-menu li a.dc-mega {
+	position: relative;
+}
+
+.netismenu ul.mega-menu li a .dc-mega-icon {
+	display: block;
+	position: absolute;
+	top: 16px;
+	left: 25px;
+	width: 23px;
+	height: 23px;
+	background: url(../lib/megamenu/skins/images/icon4.png) no-repeat 0 0;
+}
+
+.netismenu ul.mega-menu li a .dc-mega-icon-nms {
+	display: block;
+	position: absolute;
+	top: 16px;
+	left: 25px;
+	width: 23px;
+	height: 23px;
+	background: url(../lib/megamenu/skins/images/p_nms.png) no-repeat 0 0;
+}
+
+.netismenu ul.mega-menu li a .dc-mega-icon-tms {
+	display: block;
+	position: absolute;
+	top: 16px;
+	left: 25px;
+	width: 23px;
+	height: 23px;
+	background: url(../lib/megamenu/skins/images/p_tms.png) no-repeat 0 0;
+}
+
+.netismenu ul.mega-menu li a .dc-mega-icon-sms {
+	display: block;
+	position: absolute;
+	top: 16px;
+	left: 25px;
+	width: 23px;
+	height: 23px;
+	background: url(../lib/megamenu/skins/images/p_sms.png) no-repeat 0 0;
+}
+
+.netismenu ul.mega-menu li a .dc-mega-icon-fms {
+	display: block;
+	position: absolute;
+	top: 16px;
+	left: 25px;
+	width: 23px;
+	height: 23px;
+	background: url(../lib/megamenu/skins/images/p_fms.png) no-repeat 0 0;
+}
+
+.netismenu ul.mega-menu li a .dc-mega-icon-rpt {
+	display: block;
+	position: absolute;
+	top: 16px;
+	left: 25px;
+	width: 23px;
+	height: 23px;
+	background: url(../lib/megamenu/skins/images/p_rpt.png) no-repeat 0 0;
+}
+
+.netismenu ul.mega-menu li a .dc-mega-icon-env {
+	display: block;
+	position: absolute;
+	top: 16px;
+	left: 25px;
+	width: 23px;
+	height: 23px;
+	background: url(../lib/megamenu/skins/images/p_env.png) no-repeat 0 0;
+}
+
+.netismenu ul.mega-menu li a .dc-mega-icon-alarm {
+	display: block;
+	position: absolute;
+	top: 16px;
+	left: 25px;
+	width: 23px;
+	height: 23px;
+	background: url(../lib/megamenu/skins/images/p_alarm.png) no-repeat 0 0;
+}
+
+.netismenu ul.mega-menu li a .dc-mega-icon-asset {
+	display: block;
+	position: absolute;
+	top: 16px;
+	left: 25px;
+	width: 23px;
+	height: 23px;
+	background: url(../lib/megamenu/skins/images/p_asset.png) no-repeat 0 0;
+}
+
+.netismenu ul.mega-menu li a .dc-mega-icon-lms {
+	display: block;
+	position: absolute;
+	top: 16px;
+	left: 25px;
+	width: 23px;
+	height: 23px;
+	background: url(../lib/megamenu/skins/images/p_line.png) no-repeat 0 0;
+}
+
+.netismenu ul.mega-menu li a .dc-mega-icon-ipt {
+	display: block;
+	position: absolute;
+	top: 16px;
+	left: 25px;
+	width: 23px;
+	height: 23px;
+	background: url(../lib/megamenu/skins/images/p_ipt.png) no-repeat 0 0;
+}
+
+.netismenu ul.mega-menu li.mega-hover a, .netismenu ul.mega-menu li a:hover
+	{
+	background-position: 100% -40px;
+	color: #ffffff;;
+	text-shadow: none;
+	background: #163444;
+}
+
+.netismenu ul.mega-menu li.mega-hover a [class^="dc-mega-icon"] {
+	background-position: 0 100%;
+}
+
+.netismenu ul.mega-menu li .sub-container {
+	position: absolute;
+	background-color: #fff;
+	margin-left: -3px;
+}
+
+.netismenu ul.mega-menu li .sub {
+	padding: 10px;
+}
+
+.netismenu ul.mega-menu li .sub-container.mega .sub {
+	border: 1px solid #012e47;
+}
+
+.netismenu ul.mega-menu li .sub .row {
+	width: 100%;
+	overflow: hidden;
+	clear: both;
+	margin: 5px 0px 0px 0px;
+}
+
+.netismenu ul.mega-menu li .sub li {
+	list-style: none;
+	float: none;
+	width: 160px;
+	font-size: 1em;
+	font-weight: normal;
+}
+
+.netismenu ul.mega-menu li .sub li.mega-hdr {
+	margin: 0 0px 3px 5px;
+	border-right: 1px solid #cccccc;
+	float: left;
+	background: url(../lib/megamenu/skins/images/submenuBg.png) no-repeat 0
+		0;
+	font-size: 16px;
+}
+
+.netismenu ul.mega-menu li .sub li.mega-hdr.last {
+	margin-right: 0;
+	border: none;
+}
+
+.netismenu ul.mega-menu li .sub a {
+	background: none;
+	border: none;
+	text-shadow: none;
+	color: #111;
+	padding: 7px 10px;
+	display: block;
+	float: none;
+	text-decoration: none;
+	font-size: 0.9em;
+}
+
+.netismenu ul.mega-menu li .sub li.mega-hdr a.mega-hdr-a {
+	padding: 5px 5px 0px 0px;
+	margin-bottom: 15px;
+	height: 20px;
+	text-transform: uppercase;
+	font-weight: bold;
+	color: #fff;
+	font-size: 16px;
+	text-align: center;
+	cursor: default;
+}
+
+.netismenu ul.mega-menu li .sub li.mega-hdr a.mega-hdr-a:hover {
+	color: #fff;
+	text-shadow: none;
+}
+
+.netismenu ul.mega-menu .sub li.mega-hdr li a {
+	padding: 4px 5px 4px 15px;
+	background: url(../lib/megamenu/skins/images/rec01_off.png) no-repeat
+		5px 14px;
+	font-weight: normal;
+	width: 135px;
+	font-size: 14px;
+}
+
+.netismenu ul.mega-menu .sub li.mega-hdr li a:hover {
+	color: #307196;
+	font-weight: bold;
+	text-decoration:underline;
+    background:  url(../lib/megamenu/skins/images/rec01_on.png)
+		no-repeat 5px 14px; 
+	font-size: 14px !important;
+}
+
+.netismenu ul.mega-menu .sub ul li {
+	padding-right: 0;
+}
+
+.netismenu ul.mega-menu li .sub-container.non-mega .sub {
+	padding: 20px 20px 20px 0;
+}
+
+.netismenu ul.mega-menu li .sub-container.non-mega li {
+	padding: 0;
+	width: 190px;
+	margin: 0;
+}
+
+.netismenu ul.mega-menu li .sub-container.non-mega li a {
+	padding: 10px 5px 10px 22px;
+	background: url(../lib/megamenu/skins/images/rec01_off.png) no-repeat
+		7px 10px;
+}
+
+.netismenu ul.mega-menu li .sub-container.non-mega li a:hover {
+	color: #2b5fad;
+	background: #e9f6ff url(../lib/megamenu/skins/images/rec01_on.png)
+		no-repeat 7px 10px;
+}
+
+/* 서브타이틀 뷰렛 */
+.pageSubTitle{width: 9px; height:9px; background: url(../img/MainImg/customer_bullet.png) no-repeat 0px 0px; }
+
+
+/* logout */
+.userLogout{background:url('../img/MainImg/main_logut.png') no-repeat; width:68px; height:20px; float:right; cursor:pointer; margin:18px;}
+.userId{color:#fff; font-weight: bold; background:url("../img/MainImg/userIcon2.png") 0 2px no-repeat; float:right; margin: 20px 10px; padding-left: 20px;}
+
+/* 장애등급 */
+.evt{background:#000; border-radius:18px; margin-left: 5px; margin-right: 5px; margin-top: 2px !important;}
+.evtName{color:#fff; font-size:11px;  line-height:18px; font-family:'Malgun Gothic';}
+.critical{background:#F64431}
+.major{background:#FF9A00}
+.minor{background:#FFCD00}
+.warning{background:#FEEE24}
+.info{background:#1428A0}
+.normal{background:#47B14C}
+.processing{background:#3FBFB0}
+
+/* 신청:request / 완료 버튼:cleared */
+.request{background: #f4b140; text-align: center; width:60px;}
+.cleared{background: #57aa3e; text-align: center; width:60px;}
+
+/** Syslog등급*/
+.sys_emergency, .sys_emerg{background:#D1221B}
+.sys_alert{background:#D24E17}
+.sys_critical, .sys_crit{background:#D68528}
+.sys_error, .sys_err{background:#DAB220}
+.sys_warning{background:#D2E40E}
+.sys_notice{background:#97C7E5}
+.sys_informational, .sys_info{background:#69B2E4}
+.sys_debug{background:#449BE5}
+
+
+/*=======================
+
+	삼성전자 스타일
+
+========================*/
+/* 삼성전자 상단 */
+.Dashboard-Logo{font-family: 'SamsungOneUIKorean 700'; font-weight: 500; font-size:23px; letter-spacing: -1px; color:#000; float:left; padding-top:16px;}
+.Dashboard-button{float: right; padding-top:15px;}
+.KeyColor{color:#3FBFB0;}
+
+/* 삼성전자 위젯 타이틀 부분 */
+.TitleBox {
+	margin-left: 12px;
+	margin-top: 10px;
+}
+.dashTitleBox {
+	position: relative;
+	float: left;
+	width: 100%;
+	height: 40px;
+	/*padding: 5px 0 5px 0;*/
+	background:#fff;
+}
+.ctrlTitle{position: absolute; float: left; color:#000; font-size: 16px; opacity: 0.9; letter-spacing: -0.5px; font-weight: bold;}
+.ctrlButton{float:right; margin-right:5px;}
+
+/* 삼성전자 위젯 컨텐츠 부분 */
+.ctrlContent{position: absolute; left: 0; top:40px; right: 0px; bottom: 0px; background:#fff;}
+
+/*========================*/
+
+
+
+/**=======================
+	삼성전자 - 장애등급
+======================== */
+.evt{border-radius:18px; margin-left: 5px; margin-right: 5px; margin-top: 2px !important;}
+.evtName{color:#fff; font-size:11px; height:18px; line-height: 18px; font-weight: bold;}
+.critical{background:#F64431;}
+.major{background:#FF9A00;}
+.minor{background:#FFCD00;}
+.warning{background:#ffe417;}
+.info{background:#1428A0;}
+.normal{background:#5cc153;}
+.processing{background:#3FBFB0;}
+
+/** error(회선현황, 장비현황, 장애현황 그리드에서 사용): 장애 */
+.error{ background: #eb837e; }
+
+/* 신청:request / 완료 버튼:cleared */
+.request{background: #f4b140; text-align: center; width:60px;}
+.cleared{background: #57aa3e; text-align: center; width:60px;}
+
+
+/*  이벤트 버블: 기본크기:85px  */
+.bubble{width:85px; height: 85px; border-radius: 50%; line-height: 85px; color:#fff; font-size:16px; margin:0 auto; text-align: center;}
+.bubbleSize70{width:70px; height: 70px; line-height: 70px; font-size:16px;}
+.bubbleSize50{width:50px; height: 50px; line-height: 50px; font-size:14px;}
+
+/*======= 장애현황 위젯 =======*/
+.smsStatErr{width:100%; float:left;}
+.errCircle{ width: 100%; display: flex; margin-top:30px; float:left;}
+.errCircle>ul{width:100%; display: flex; justify-content: center; margin: 0 10px 0 10px;}
+.errCircle>ul>li{float:left;  position: relative; margin-right:7px;}
+.errCircle>ul>li:last-child{margin-right:0;}
+.errCircle>ul>li>span{float:left; position: absolute; top:50%; left:0; margin-top:-16px; width: 100%; text-align: center; color:#ffffff; font-weight: bold; font-size:24px; line-spacing: -1;}
+.errIndex{width: 100%; min-width: 400px; float:left; margin-top: 30px;}
+.errIndex>ul{display: flex; width: 100%; justify-content: center;}
+.errIndex>ul>li{float:left; margin-right:10px;}
+.errIndex>ul>li>div{width:12px; height: 12px; float:left; margin-right: 5px;}
+.errIndex>ul>li>span{letter-spacing: -0.5px;}
+
+/**=======================
+	서버현황 - 서버상세팝업
+======================== */
+
+/*=== 서버 정보 그리드 ===*/
+.sp1{height: 100%; font-size: 12px; min-width: 260px;}
+.sp1>table{height: 100%;}
+.sp1>table>tbody>tr>th{text-align: center; border-right:1px solid #d3d3d3;}
+.sp1>table>tbody>tr>td{border-top:1px solid #d3d3d3; border-right:1px solid #d3d3d3;}
+.sp1>table>tbody>tr>td:last-child{text-align: left;}
+.sp1>table>tbody>tr>td>input{width:150px;}
+.trBg{background: #f6f6f6; font-weight: bold; text-align: center;}
+
+/*=== 요약 이미지 ===*/
+/*레이아웃*/
+.sp2{height: 100%;}
+.svrSumImgWarp{width: 100%; height: 85%; position: absolute; display: flex; align-items: center; justify-content: center; min-width: 530px;}
+.errBubbleBlockWap{width: 100%; height: 14%; position: absolute; bottom:10px; display: flex; min-width: 530px;}
+
+/* 서버장비 박스 */
+.svrSumImg{height: 334px; vertical-align: middle;}
+.svrInfo{width: 203px; position: relative; height: 100%; float: left; }
+.svrStatus{width: 199px; height: 190px; font-weight: bold; position: absolute; top:50%; margin-top: -95px; font-size: 14px;}
+.svrStatus>ul>li:nth-of-type(1){width: 100%; height: 45px; background: #70b0ca; color: #FFFFFF; text-align: center;}
+.svrStatus>ul>li:nth-of-type(1)>div:first-child{padding-top: 5px;}
+.svrStatus>ul>li:nth-of-type(2){width: 100%; height: 100px; background: #f6f6f6; position: relative;}
+.errBubble{position: absolute; margin-top: 8px; margin-left: 57px;}
+.IconSvr{line-height: 100px; text-align: center; width: 100%; height: 100%; position: absolute;}
+.svrStatus>ul>li:nth-of-type(3){width: 100%; height: 45px; background: #ececec; olor: #FFFFFF; text-align: center; color: #01709e;}
+.svrStatus>ul>li:nth-of-type(3)>div:first-child{padding-top: 5px;}
+
+/* 서버 장비 상세정보 */
+.devInfoBox{margin-top: 115px; position: absolute; top: 50%;}
+.devInfoBox>ul>li{float: left; width: 65px; height: 50px; color: #ffffff; text-align: center; font-weight: bold; margin-right: 2px; font-size: 14px;}
+.devInfoBox>ul>li>div:first-child{background: #70b0ca; height: 20px; line-height: 20px;}
+.devInfoBox>ul>li>div:last-child{background: #3192ba; height: 30px; line-height: 30px;}
+
+/* 서버 IN/OUT Alive(정상) */
+.svrAlive{width: 274px; height: 100%; float: left; position: relative; margin-left: -9px; }
+.aliveBg{background: url("../img/svrAliveBg.png") no-repeat; width: 274px; height: 172px; position: absolute; top:50%; margin-top: -168px;}
+.aliveBg>ul{width: 95px; height: 70px; float: left; color:#545454; font-weight: bold;}
+.aliveBg>ul:first-child{margin: 46px 0px 0px 17px;}
+.aliveBg>ul:last-child{margin: 46px 0px 0px 67px;}
+.aliveBg>ul>li:first-child{color:#FFFFFF; text-align: center; width: 95px; height: 20px; line-height: 20px;}
+.aliveBg>ul>li:last-child{margin-top:10px; text-align: center;}
+
+/* 서버 에이전트다운 */
+.svrAgentdown{width: 212px; height: 100%; float: left; position: relative;  margin-left: -9px; display: none;}
+.agentdownBg{background: url("../img/svrAgentdownBg.png") no-repeat; width: 212px; height: 333px; position: absolute; top:50%; margin-top: -168px;}
+.agentdown{background: url("../img/IconLinkdown.svg") 0 100% no-repeat; font-weight: bold; padding-left: 18px; position: absolute; right: 23px; top: 75px; color: #FFFFFF;}
+.flowCollect{position: absolute; right:0; bottom:0; background: #f6f6f6; width: 136px; height: 50px; line-height: 50px; color:#545454; font-weight: bold;}
+.flowCollect>img{margin:0 10px 5px 20px;}
+
+/* 장애 이벤트 */
+.errBubbleBlock{margin:0 10px 10px 10px; background: #f6f6f6; height: 100%; display: flex; justify-content: center; align-items: center; width: 100%;}
+.errBubbleBlock>li{float:left; text-align: center; font-weight: bold;  margin:0 16px 0 16px;}
+.errBubbleBlock>li>div{margin-bottom: 6px;}
+
+/*======= cpu, memory, swap 사용률 그리드 =======*/
+.sp3{height: 100%; min-width: 407px;}
+.sp3>table{width: 100%; height: 100%;}
+.sp3>table>tbody>tr>td{text-align: center; border-top:1px solid #d3d3d3; border-right:1px solid #d3d3d3;}
+.sp3>table>tbody>tr>th{text-align: center; border-right:1px solid #d3d3d3;}
+.thBg{background: #ececec; font-weight: bold;}
+.trBg{background: #f6f6f6; font-weight: bold;}
+.sumBlock{background: #3192ba; font-weight: bold; margin:4px 12px; padding:2px 0; width: 63px; color:#FFFFFF; font-weight: bold; text-align: center; display: inline-block;}
+
+/* power 통계화면 */
+.powerWrap{width:100%; margin-top: 15px; display: flex; justify-content: center;}
+.powerCircle{position: relative; width:33%;}
+.powerCircle>span{float:left; position: absolute; top:50%; left:0; margin-top:-14px; width: 100%; text-align: center; color:#ffffff; font-weight: bold; font-size:24px; line-spacing: -1;}
+
+/**=======================
+	장비현황 - 장비상세팝업
+======================== */
+
+/* 네트워크장비 박스 */
+.netInfo{width: 270px; position: relative; height: 100%; float: left; margin-left: 9px;}
+.netStatus{width: 199px; height: 190px; font-weight: bold; position: absolute; top:50%; margin-top: -95px; font-size: 14px; margin-left: 36px;}
+.netStatus>ul>li:nth-of-type(1){width: 100%; height: 45px; background: #70b0ca; color: #FFFFFF; text-align: center;}
+.netStatus>ul>li:nth-of-type(1)>div:first-child{padding-top: 5px;}
+.netStatus>ul>li:nth-of-type(2){width: 100%; height: 100px; background: #f6f6f6; position: relative;}
+.netStatus>ul>li:nth-of-type(3){width: 100%; height: 45px; background: #ececec; olor: #FFFFFF; text-align: center; color: #01709e;}
+.netStatus>ul>li:nth-of-type(3)>div:first-child{padding-top: 5px;}
+
+/* 네트워크장비 IN/OUT Alive(정상) */
+.netAlive{width: 274px; height: 100%; float: left; position: relative; margin-left: -40px;}
+.aliveBg{background: url("../img/svrAliveBg.png") no-repeat; width: 274px; height: 172px; position: absolute; top:50%; margin-top: -168px;}
+.aliveBg>ul{width: 95px; height: 70px; float: left; color:#545454; font-weight: bold;}
+.aliveBg>ul:first-child{margin: 46px 0px 0px 17px;}
+.aliveBg>ul:last-child{margin: 46px 0px 0px 67px;}
+.aliveBg>ul>li:first-child{color:#FFFFFF; text-align: center; width: 95px; height: 20px; line-height: 20px;}
+.aliveBg>ul>li:last-child{margin-top:10px; text-align: center;}
+
+/* 네트워크장비 링크다운 */
+.netLinkdown{width: 212px; height: 100%; float: left; position: relative;  margin-left: -40px; }
+.linkdownBg{background: url("../img/svrAgentdownBg.png") no-repeat; width: 212px; height: 333px; position: absolute; top:50%; margin-top: -168px;}
+.linkdown{background: url("../img/IconLinkdown.svg") 0 100% no-repeat; font-weight: bold; padding-left: 18px; position: absolute; right: 36px; top: 75px; color: #FFFFFF;}
+.flowBg{background: url("../img/FlowBg.png") 0 100% no-repeat;  width:151px; height: 102px; position: absolute; top:55%;}
+.flowCollect{ position: absolute; left:75px; bottom:-47px; background: #f6f6f6; width: 136px; height: 50px; line-height: 50px; color:#545454; font-weight: bold;}
+.flowCollect>img{margin:0 10px 5px 20px;}
+
+/*desc*/
+.sp4{height: 100%;}
+.descTable{height: 100%;}
+.descTable>table{height: 100%;}
+.descTable>table>tbody>tr>td:last-child>span{margin-left:5px;}
+
+/**=======================
+	장비현황 - 요약탭
+======================== */
+/* 탭버튼 성능 하위 메뉴 내용 타이틀  */
+.pertTitle{background:#efefef url("../../img/MainImg/customer_bullet.png") 10px 50% no-repeat; padding:8px 24px; font-weight: bold; border-right:1px solid #a3a3a3;}  
+
+/* 탭버튼 성능 하위 메뉴 내용 차트 높이 */
+.perfChart{border-right:1px solid #a3a3a3; height: 90%;}
+
+/* 장비현황 요약 이미지, 이벤트 위치 */
+.pBottom>.netSumImgWarp{height: 100%;}
+#sumSplitter3>.splitterLine> .errBubbleBlockWap{height: 100%; border-top:1px solid #d4d4d4; bottom:0;}
+#sumSplitter3>.splitterLine> .errBubbleBlockWap>.errBubbleBlock{margin:0;}
+
+
+.sumTab{height:100%; min-width:0; bottom:0;}
+.sumTab>.errBubbleBlock{margin:0;}
+
+
+/**=======================
+	회선현황  - 요약탭
+======================== */
+.ifStaWrap{position: relative; width:100%; height: 100%;}
+.ifStaBlock{position: absolute; top:10px; left:10px; bottom:10px; right:10px;  min-width:1200px; }
+
+/*===  회선정보 ===*/
+/* 회선정보 이미지 레이아웃 */
+.ifImgWrap{border:1px solid #d4d4d4; height: 100%; margin-right:0.5%;}
+.ifSumImgWarp{width:100%; height: 100%;}
+
+/* 회선정보 타이틀 */
+.ifTitle{width:100%; background:#efefef; position: relative; height: 30px;}
+.ifTitle>span{text-align: center; font-weight: bold; line-height: 30px; width:100%; display: inline-block;}
+.ifTitle>ul{position: absolute; right:10px; top:8px;}
+.ifTitle>ul>li{float:left; font-weight: bold;}
+.aliveIf{width:14px; height: 14px; border-radius:50%; background:#59b453; margin-right:5px; margin-left:10px;}
+.deadIf{width:14px; height: 14px; border-radius:50%; background:#aaaaaa; margin-right:5px; margin-left:10px; }
+
+/* 회선장비 박스 */
+.ifSumImg{position: relative; width: 690px; height: 100%; margin:0 auto;}
+.ifSum{position: absolute; top:45%; left:0; right:0; bottom:50%;}
+.ifStatus{width: 199px; height: 190px; font-weight: bold; position: absolute; top:50%; margin-top: -95px; font-size: 14px;}
+.ifStatus>ul>li:nth-of-type(1){width: 100%; height: 45px; background: #70b0ca; color: #FFFFFF; text-align: center;}
+.ifStatus>ul>li:nth-of-type(1)>div:first-child{padding-top: 5px;}
+.ifStatus>ul>li:nth-of-type(2){width: 100%; height: 100px; background: #f6f6f6; position: relative;}
+.IconNet{line-height: 100px; text-align: center; width: 100%; height: 100%; position: absolute;}
+.ifStatus>ul>li:nth-of-type(3){width: 100%; height: 45px; background: #ececec; olor: #FFFFFF; text-align: center; color: #01709e;}
+.ifStatus>ul>li:nth-of-type(3)>div:first-child{padding-top: 5px;}
+.IconIf{line-height: 100px; text-align: center; width: 100%; height: 100%; position: absolute;}
+
+/* Alive */
+.ifAliveBg{background: url("../img/IfAliveBg.png") no-repeat; width: 495px; height: 205px; position: absolute; top:50%; left:194px; margin-top:-102px;}
+.ifAliveBg>ul{width: 95px; height: 70px; float: left; color:#545454; font-weight: bold;}
+.ifAliveBg>ul:nth-child(1){position: absolute; top:66px; right:295px;}
+.ifAliveBg>ul:nth-child(2){position: absolute; right:100px; } 
+.ifAliveBg>ul:nth-child(3){position: absolute; right:100px; bottom:0;}
+.ifAliveBg>ul>li:first-child{color:#FFFFFF; text-align: center; width: 95px; height: 20px; line-height: 20px;}
+.ifAliveBg>ul>li:last-child{margin-top:4px; text-align: center;}
+.ifAliveBg>ul>li.sum_li{margin-top:10px; text-align: center;}
+/* Dead */
+.ifDeadBg{background: url("../img/ifDeadBg.png") no-repeat; width: 495px; height: 55px; position: absolute; top:50%; left:194px; margin-top:-27px;}
+
+/*=== 회선장애 ===*/
+.ifToday{display: flex; height: 100%;}
+.ifTodayTitle{width:100%; background: #f6f6f6; border-right:1px solid #d4d4d4; width: 15%;  text-align: center; display: flex; justify-content:center;  align-items:center; font-weight: bold;}
+.ifTodayEvt{width: 84%; display: flex;}
+.ifTodayEvt>ul{display: flex; justify-content:center; align-items:center; width: 100%;}
+.ifTodayEvt>ul>li{float: left; width:15%; text-align: center;  font-weight: bold;}
+.ifTodayEvt>ul>li>div{margin:0 auto;}
+.ifTodayEvt>ul>li>label{line-height: 24px;}
+
+/*=== 회선현황 그리드 ===*/
+.ifStaGrid{border-left:1px solid #d4d4d4; width:50.2%; height: 68%; float: left;}
+.ifStaGrid>table{width:100%; height: 100%;}
+.ifStaGrid>table{border-right:1px solid #d4d4d4; width: 100%; height: 100%; border-spacing: 0;}
+.ifStaGrid>table>tbody>tr>td{text-align: center; border-top:1px solid #d4d4d4; border-right:1px solid #d4d4d4;}
+
+/**=======================
+	회선현황  - 회선상세정보팝업
+======================== */
+/*=== 회선정보 이미지 레이아웃 ===*/
+.p_ifSum>.ifStaBlock{width:100%; position: absolute; top:0; left:0; right:0; bottom:0; min-width: 700px;}
+.p_ifSum>.ifStaBlock>.ifImgWrap{width:100%; border:none; height: 90%;}
+/*=== 회선장애 ===*/
+.ifTodayPop{border-left:1px solid #d4d4d4;}
+.ifTodayEvtPop{width:100%; height: 100%;  min-width:250px;}
+.ifTodayEvtPop>ul{display: flex; justify-content:center; width: 100%; margin-top:15px;}
+.ifTodayEvtPop>ul>li{float: left; text-align: center;  font-weight: bold; width:26%; min-width:100px;}
+.ifTodayEvtPop>ul>li>div{margin:0 auto;}
+.ifTodayEvtPop>ul>li>label{line-height: 24px;}
+/*=== 회선현황 그리드 ===*/
+#tbSumPerf{min-width:400px;}
+
+
+/**=======================
+	이벤트 티켓 관리 : 2018-03-23
+======================== */
+
+.evtCountBlock {
+	flaot: left;
+	font-family: "맑은 고딕", dotum, "Trebuchet MS", Verdana, Helvetica,
+	Sans-Serif;
+}
+
+.evtCountBlock>ul {
+	float: left;
+	line-height: 66px;
+	width: 23.5%;
+	height: 70px;
+	position: relative;
+	background: #d2d2d2;
+}
+
+.evtCountBlock>ul>li {
+	float: left;
+}
+
+.evtCountBlock>ul>.evtTicketImg {
+	padding-left: 20px;
+	padding-right: 10px;
+}
+
+.evtCountBlock>ul>.countName {
+	font-size: 18px;
+	color: #333333;
+}
+
+.evtCountBlock>ul>.countText{
+	float: right;
+	font-size: 26px;
+	color: #333333;
+	text-align: right;
+	padding-right:20px;
+
+}
+.evtArrow{width:2%; height:70px; float:left; position: relative;}
+.evtArrow>img{position: absolute; top: 50%; left: 50%; margin-top: -12px; margin-left: -7px;}
+
+/*이벤트 발생시 ul 태그에 클래스명 추가
+  1. 접수대기 : standby
+  2. 조치중 : measure
+  3. 조치완료 : action
+  4. 종결 : finish
+*/
+.standby{background: #ff7561 !important;}
+.measure{background: #ff9a42 !important;}
+.action{background: #fec442 !important;}
+.finish{background: #91a1ac !important;}
+.standby>li:last-child, .measure>li:last-child, .action>li:last-child, .finish>li:last-child{color:#fff; font-weight: bold;}
+.standby>li:nth-child(2), .measure>li:nth-child(2), .action>li:nth-child(2), .finish>li:nth-child(2){color:#fff; font-weight: bold;}
+
+
+/** GoJS css */
+.gshHeader { border-color: #ecf8be; font-size: 13; margin-bottom: 15; }
+
+
+/**=======================
+	이벤트그룹별 장애현황
+======================== */
+/*=== 합계 ===*/
+.errGrpBox{height: 100px; border:1px solid #d4d4d4; width:100%; margin-bottom: 10px;}
+.errGrpBox>table{width: 100%; height: 100px;}
+.errGrpBox>table>tbody>tr:FIRST-CHILD>td{background: #f6f6f6; text-align: center; font-weight: bold;   cursor: pointer; }
+.errGrpBox>table>tbody>tr:FIRST-CHILD>td:focus{background:#5da9d5; color:#fff;}
+.errGrpBox>table>tbody>tr>td{border-right:1px solid #d4d4d4;  white-space: nowrap; width:130px;}
+.errGrpBox>table>tbody>tr>td:last-child{border-right: none;}
+.errGrpBox>table>tbody>tr>.pop_gridVal>.bubbleSize50{cursor: pointer;}
+.errGrpBox .focusTd{background-color:#5da9d5 !important; color:#fff;}
+
+/**=======================
+	이벤트 현황 네비 추가
+======================== */
+.errNav {width:100%; height:33px; border:1px solid #dcdcdc; background:#f5f5f5; line-height: 33px;}
+.errNav .NavTxt {position:absolute; top:40px; right:30px; font-weight: bold; cursor: pointer}
+.errNav .NavTxt > * {float: left;}
+.errNav .btnNav {margin-left: 5px; position: absolute; top: 10px;}

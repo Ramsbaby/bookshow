@@ -40,6 +40,16 @@ public class MsgService {
 		return getMessage("추가 중 에러가 발생하였습니다.");
 	}
 
+	// 중복 아이디 실패
+	protected String getUserIdDuplicateMessage() {
+		return getMessage("중복된 아이디가 존재합니다.");
+	}
+
+	// 비밀번호 실패
+	protected String getPasswordNotMatche() {
+		return getMessage("비밀번호를 다시 입력해주세요.");
+	}
+
 	// 수정 성공
 	protected String getEditOkMessage() {
 		return getMessage("수정되었습니다.");

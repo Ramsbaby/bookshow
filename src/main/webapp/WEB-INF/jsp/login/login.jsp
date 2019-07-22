@@ -9,7 +9,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/login.css" />
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/js/login.js"></script>
+	src="${pageContext.request.contextPath}/js/login/login.js"></script>
 </head>
 <body>
 	<form id="hForm"></form>

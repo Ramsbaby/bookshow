@@ -1,7 +1,8 @@
 create table person 
 ( 
-	id integer not null, 
-	name varchar(255) not null, 
-	address varchar(1000) not null, 
-	primary key(id) 
+	userid varchar(100) not null,
+	name varchar(100) not null,
+	address varchar(255) null,
+	password varchar(100) not null,
+	primary key(userid)
 );

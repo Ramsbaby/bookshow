@@ -2,10 +2,12 @@ package com.jwlee.bookshow.webapp.db.login.service;
 
 import com.jwlee.bookshow.webapp.common.MsgService;
 import com.jwlee.bookshow.webapp.common.ReturnData;
-import com.jwlee.bookshow.webapp.db.login.model.LoginEntity;
+import com.jwlee.bookshow.webapp.db.login.model.Login;
 import com.jwlee.bookshow.webapp.db.login.repository.LoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
 
 /**
  * LoginServiceImpl
@@ -20,18 +22,10 @@ public class LoginServiceImpl extends MsgService implements LoginService {
     private LoginRepository loginRepository;
 
     @Override
-    public ReturnData addAccount() {
+    public ReturnData addAccount(Login login) {
         ReturnData returnData = new ReturnData();
-
-//        ConfigurableApplicationContext context
-//        LoginRepository personRepository = context.getBean(LoginRepository.class);
-
-        LoginEntity user = loginRepository.findByUserId("test");
-
-        System.out.println(user);
-//        loginRepository.findAll();
+        loginRepository.save(login);
         returnData.setResultData(getAddOkMessage());
-
         return returnData;
     }
 }
