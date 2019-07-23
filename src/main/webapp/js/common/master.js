@@ -8,6 +8,7 @@ $(function() {
 });
 
 var Master = {
+
 	initVariable: function() {
 		ctxPath = $('#ctxPath').val();
 		
@@ -64,29 +65,15 @@ var Master = {
 			// HmWindow.create(pwin);
 		} catch(e) {}
 	},
-	
-	//버튼이미지 설정
-    setBtnImgSrc: function () {
 
-    },
-    
-    // 공통이미지 설정
-    setCommImgSrc: function() {
-
-    },
-    
     // location 영역 설정
     setLoc: function(event) {
     	var urlPath = window.location.pathname;
     	$('#mega-menu li.level-1 a').each(function() {
         	var href = $(this).attr('href');
-
-        	console.log(urlPath);
-        	console.log(href);
         	if(urlPath == href) {
         		var menu = $(this).text();
         		$('#navMenuNm, #navPageMenu').text(menu);
-
         	}
         });
     },
@@ -158,6 +145,20 @@ var Master = {
 		$cbPeriod.jqxDropDownList('clearSelection');
 		$cbPeriod.jqxDropDownList('selectIndex', _selectedIndex);
     },
+
+	enumBookTargetField: function () {
+		var field = [
+			{label:"전체", value:"all"},
+            {label:"제목", value:"title"},
+            {label:"ISBN", value:"isbn"},
+            {label:"주제어", value:"keyword"},
+            {label:"목차", value:"contents"},
+            {label:"책소개", value:"overview"},
+            {label:"출판사", value:"publisher"}];
+
+		return field;
+    }
+
 
 	
 };

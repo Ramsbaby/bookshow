@@ -39,7 +39,7 @@ public class ErrorInfo implements Serializable {
 			WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(sc);
 			MessageSource messageSource = (MessageSource) wac.getBean("messageSource");
 			this.code = messageSource.getMessage("msg.prcs.fail.code", null, Locale.getDefault());
-			this.message = messageSource.getMessage("msg.prcs.fail", null, Locale.getDefault());
+			this.message = messageSource.getMessage("처리 중 에러가 발생했습니다.", null, Locale.getDefault());
 		}
 	}
 

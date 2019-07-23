@@ -2,10 +2,7 @@ package com.jwlee.bookshow;
 
 import com.jwlee.bookshow.webapp.common.ApiService;
 import com.jwlee.bookshow.webapp.common.SessionManager;
-import com.jwlee.bookshow.webapp.db.login.model.Login;
-import com.jwlee.bookshow.webapp.db.login.repository.LoginRepository;
-import com.jwlee.bookshow.webapp.enums.EnumBookCategory;
-import com.jwlee.bookshow.webapp.enums.EnumBookTarget;
+import com.jwlee.bookshow.webapp.db.login.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
-import java.util.Map;
 
 /**
 * DemoApplication
@@ -27,9 +23,6 @@ import java.util.Map;
 @EnableJpaAuditing
 @SpringBootApplication
 public class BookshowApplication implements CommandLineRunner {
-
-	@Autowired
-	private LoginRepository loginRepository;
 
 	@Autowired
 	ApiService apiService;
@@ -78,8 +71,8 @@ public class BookshowApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception{
 //		loginRepository.save("test".name("test").cellTel("test").password("test").build());
 
-		Map<String, Object> result = apiService.searchBooks(isbn, EnumBookTarget.ISBN.getCode(),
-				EnumBookCategory.전체.getCode(), 1);
+//		Map<String, Object> result = apiService.searchBooks(isbn, EnumBookTarget.ISBN.getCode(),
+//				EnumBookCategory.전체.getCode(), 1);
 
 	}
 

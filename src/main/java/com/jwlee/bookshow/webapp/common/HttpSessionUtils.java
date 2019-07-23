@@ -1,6 +1,6 @@
 package com.jwlee.bookshow.webapp.common;
 
-import com.jwlee.bookshow.webapp.db.login.model.Login;
+import com.jwlee.bookshow.webapp.db.login.model.User;
 
 import javax.servlet.http.HttpSession;
 
@@ -23,11 +23,11 @@ public class HttpSessionUtils {
     }
 
     // session 에 저장된 값을 가져오는 메서드
-    public static Login getUserFromSession(HttpSession session) {
+    public static User getUserFromSession(HttpSession session) {
         if ( !isLoginUser(session) ) {
             return null;
         }
 
-        return (Login)session.getAttribute(USER_SESSION_KEY);
+        return (User)session.getAttribute(USER_SESSION_KEY);
     }
 }

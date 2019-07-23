@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>회원가입</title>
 <%@include file="/inc/inc.jsp" %>
-<script src="${pageContext.request.contextPath}/js/login/popup/pAccountAdd.js"></script>
+<script src="${pageContext.request.contextPath}/js/user/popup/pAccountAdd.js"></script>
 </head>
 <body style="overflow: hidden;">
 <form id="popupAddForm" name="popupAddForm">

@@ -260,6 +260,9 @@
 .p_btnBackIcon{width: 23px; height:23px; background: url(../img/Btn/btnPrevious.png) no-repeat 0px 0px; }
 .p_btnBackIcon:hover,.p_btnBackIcon:active{width: 23px; height:23px; background: url(../img/Btn/btnPrevious.png) no-repeat 0px -23px; }
 
+.p_btnNextIcon{width: 23px; height:23px; background: url(../img/Btn/btnNext.png) no-repeat 0px 0px; }
+.p_btnNextIcon:hover,.p_btnNextIcon:active{width: 23px; height:23px; background: url(../img/Btn/btnNext.png) no-repeat 0px -23px; }
+
 /*
 .p_btnSetIcon{width: 23px; height:23px; background: url(../img/Btn/btnSetupIcon.png) no-repeat 0px 0px; }
 .p_btnSetIcon:hover,.p_btnSetIcon:active{width: 23px; height:23px; background: url(../img/Btn/btnSetupIcon.png) no-repeat 0px -23px; }

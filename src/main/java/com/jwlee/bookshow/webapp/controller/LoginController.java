@@ -2,9 +2,9 @@ package com.jwlee.bookshow.webapp.controller;
 
 import com.jwlee.bookshow.common.util.EncryptUtil;
 import com.jwlee.bookshow.webapp.common.*;
-import com.jwlee.bookshow.webapp.db.login.model.Login;
-import com.jwlee.bookshow.webapp.db.login.repository.LoginRepository;
-import com.jwlee.bookshow.webapp.db.login.service.LoginService;
+import com.jwlee.bookshow.webapp.db.login.model.User;
+import com.jwlee.bookshow.webapp.db.login.repository.UserRepository;
+import com.jwlee.bookshow.webapp.db.login.service.UserService;
 import com.jwlee.bookshow.webapp.db.menu.service.MenuService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,21 +19,20 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
-import java.util.UUID;
 
 @RequestMapping("/login")
 @Controller
 public class LoginController extends MsgService {
     private final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-    @Resource(name = "loginService")
-    private LoginService loginService;
+    @Resource(name = "userService")
+    private UserService userService;
 
     @Resource(name = "menuService")
     private MenuService menuService;
 
     @Autowired
-    private LoginRepository loginRepository;
+    private UserRepository userRepository;
 
     // 계정 추가
     @RequestMapping(value="/userConf/addAccount.do")
@@ -47,10 +46,10 @@ public class LoginController extends MsgService {
             String password = reqMap.get("password").toString();
             String cellTel= reqMap.get("cellTel").toString();
 
-            Login login = new Login();
-            login = loginRepository.findByUserId(userId);
+            User user = new User();
+            user = userRepository.findByUserId(userId);
 
-            if(login != null)
+            if(user != null)
             {
                 returnData.setResultData(getUserIdDuplicateMessage());
                 return returnData;
@@ -60,8 +59,8 @@ public class LoginController extends MsgService {
                 EncryptUtil encryptUtil = new EncryptUtil();
                 password = encryptUtil.encryptSHA256(password, userId.getBytes());
 
-                login = new Login(userId,password,userName,cellTel);
-                return loginService.addAccount(login);
+                user = new User(userId,password,userName,cellTel);
+                return userService.addAccount(user);
             }
 
         } catch (Exception e) {
@@ -90,14 +89,14 @@ public class LoginController extends MsgService {
             password = encryptUtil.encryptSHA256(password, userId.getBytes());
 
             // DB 확인
-            Login login = new Login();
-            login = loginRepository.findByUserId(userId);
+            User user = new User();
+            user = userRepository.findByUserId(userId);
 
-            if(login == null)
+            if(user == null)
             {
                 throw new CustomException("아이디가 존재하지 않습니다.");
             }
-            else if(!login.matchPassword(password))
+            else if(!user.matchPassword(password))
             {//비밀번호 불일치
                 throw new CustomException("비밀번호가 일치하지 않습니다.");
             }

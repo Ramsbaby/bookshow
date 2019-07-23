@@ -15,7 +15,7 @@ import java.time.format.DateTimeFormatter;
 @ToString
 @EqualsAndHashCode(of = {"password"})
 @Entity
-public class Login{
+public class User {
 
     @Id
     @Column(length = 100, nullable = false, unique = true)
@@ -79,12 +79,12 @@ public class Login{
         return newPassword.equals(password);
     }
 
-    public Login()
+    public User()
     {
 
     }
 
-    public Login(String userId, String password, String name, String cellTel)
+    public User(String userId, String password, String name, String cellTel)
     {
         this.userId = userId;
         this.password = password;

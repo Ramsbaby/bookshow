@@ -1,6 +1,7 @@
 var $bookAllGrid, $dev_grpTree;
 var editTerminalIds = [];
 var timer;
+var initrowdetails;
 
 var Main = {
     /** variable */
@@ -19,14 +20,22 @@ var Main = {
         var curTarget = event.currentTarget;
         switch(curTarget.id) {
             // terminal
+            case "btnPrev": this.searchPrev(); break;
+            case "btnNext": this.searchNext(); break;
             case "btnSearch": this.search(); break;
-            case 'pbtnExcelUpload': this.uploadExcel(); break;
         }
     },
 
     /** init design */
     initDesign: function() {
-        $('#mainSplitter').jqxSplitter({ width: '99.8%', height: '99.8%', orientation: 'vertical', theme: jqxTheme, panels: [{ size: '70%', collapsible: true }, { size: '30%' }] });
+        $('#mainSplitter').jqxSplitter({ width: '99.8%', height: '99.8%', orientation: 'horizontal', theme: jqxTheme, panels: [{ size: '60%', collapsible: true }, { size: '40%' }] });
+
+        $('#cbSearchField').jqxDropDownList({ width: 150, height: 21, theme: jqxTheme, autoDropDownHeight: true,
+            displayMember: 'label', valueMember: 'value', selectedIndex: 0,
+            source: Master.enumBookTargetField()});
+
+        $('#search-keyword').jqxInput({width: 200, height:21});
+
 
         MyGrid.create($bookAllGrid, {
             source: new $.jqx.dataAdapter(
@@ -36,54 +45,29 @@ var Main = {
                         if(editTerminalIds.indexOf(rowid) == -1)
                             editTerminalIds.push(rowid);
                         commit(true);
-                    },
-                    datafields: [
-                        { name: 'imei', type: 'string' },
-                        { name: 'mac', type: 'string' },
-                        { name: 'cellTel', type: 'string' },
-                        { name: 'regDt', type: 'string' },
-                        { name: 'regUserId', type: 'string' },
-                        { name: 'regPosCode', type: 'string' },
-                        { name: 'contractUpdDt', type: 'string' },
-                        { name: 'userDeptNm', type: 'string' }
-                    ]
-                },
-                {
-                    formatData: function(data) {
-                        // var treeItem = HmTreeGrid.getSelectedItem($dev_grpTree);
-                        // var _deptNo;
-                        // console.log(treeItem);
-                        // if(treeItem !== null) {
-                        //     _deptNo = treeItem.grpNo;
-                        // }
-                        // $.extend(data, {
-                        //     deptNo: _deptNo
-                        // });
-                        return data;
-                    }
-                },
-                {
-                    beforeLoadComplete: function(records) {
-                        if(records != null) {
-                        }
-                        return records;
                     }
                 }
             ),
-            filterable: false,
+            width:'100%',
+            height:'95%',
             showfilterrow: false,
-            editable: false,
-            editmode : 'selectedcell',
+            pageable: false,
             columns:
                 [
-                    { text : '관리자정의 소속', datafield : 'userDeptNm', width : 150 , columntype: 'custom'},
-                    { text : 'IMEI', datafield : 'imei', width : 450 , editable:false},
-                    { text : 'MAC', datafield : 'mac', width : 250 , editable:true, hidden:true},
-                    { text : '단말기 전화번호', datafield : 'cellTel', width : 200 , editable:true},
-                    { text : '등록 ID', datafield : 'regUserId', width : 150 , editable:false},
-                    { text : '등록 직책', datafield : 'regPosCode', width : 150 , editable:false},
-                    { text : '등록일시', datafield : 'regDt', width : 150 , editable:false}
+                    { text : '도서 제목', datafield : 'title', width : 150},
+                    { text : '도서 소개', datafield : 'contents', width : 450},
+                    { text : '도서 상세 URL', datafield : 'url', width : 250},
+                    { text : '저자', datafield : 'authors', width : 250},
+                    { text : 'ISBN', datafield : 'isbn', width : 200 },
+                    { text : '출판 날짜', datafield : 'datetime', width : 150},
+                    { text : '출판사', datafield : 'publisher', width : 150},
+                    { text : '정가', datafield : 'price', width : 150},
+                    { text : '판매가', datafield : 'sale_price', width : 150},
+                    { text : '썸네일', datafield : 'thumbnail', width : 150, hidden:true}
                 ]
+        });
+        $bookAllGrid.on('rowdoubleclick', function(event) {
+            Main.initrowdetails(null,null,null, MyGrid.getRowData($bookAllGrid, event.args.rowindex));
         });
 
     },
@@ -97,13 +81,106 @@ var Main = {
     ========================================================================================*/
 
     search: function() {
-        // MyGrid.updateBoundData($bookAllGrid, ctxPath + '/mmesweb/oms/realtimeStatus/getRealtimeStatusList.do');
+        $.ajax({
+            url: "/ajax/searchBooks",
+            data: $('#mainForm').serialize(),
+            beforeSend: function () {
+                console.log($('#mainForm').serialize());
+            },
+            success: function (res) {
+                console.log(res);
+                MyGrid.setLocalData($bookAllGrid, res.resultData.documents);
+                $('#pageLoc')[0].innerText = ($('#pageNumber').val() + ' / ' + res.resultData.meta.total_count);
+
+            }
+        });
+    },
+    searchPrev: function() {
+
+        $.ajax({
+            url: "/ajax/searchBooks",
+            data: $('#mainForm').serialize(),
+            beforeSend: function () {
+                console.log($('#mainForm').serialize());
+            },
+            success: function (res) {
+                console.log(res);
+                var data = res.resultData.documents;
+                MyGrid.setLocalData($bookAllGrid, data);
+
+                var tempNumber = $('#pageNumber').val();
+                tempNumber > 1 ? $('#pageNumber').val(--tempNumber) : $('#pageNumber').val(1);
+
+                $('#pageLoc')[0].innerText = ($('#pageNumber').val() + ' / ' + res.resultData.meta.total_count);
+
+            }
+        });
+    },
+    searchNext : function() {
 
 
+        $.ajax({
+            url: "/ajax/searchBooks",
+            data: $('#mainForm').serialize(),
+            beforeSend: function () {
+                console.log($('#mainForm').serialize());
+            },
+            success: function (res) {
+                console.log(res);
+                MyGrid.setLocalData($bookAllGrid, res.resultData.documents);
 
-        // Master.refreshCbPeriod($cbPeriod);
+                var tempNumber = $('#pageNumber').val();
+                tempNumber < res.resultData.documents ? $('#pageNumber').val(++tempNumber) : $('#pageNumber').val(tempNumber);
+
+                $('#pageLoc')[0].innerText = ($('#pageNumber').val() + ' / ' + res.resultData.meta.total_count);
+
+            }
+        });
+    },
+
+    initrowdetails : function (index, parentElement, gridElement, datarecord) {
+        $('#bookDetailDiv')[0].innerHTML = "<div style='margin: 10px;'><ul style='margin-left: 30px;'><li class='title'></li></ul><div class='information'></div><div class='notes'></div></div>"
+        var tabsdiv = null;
+        var information = null;
+        var notes = null;
+        tabsdiv = $('#bookDetailDiv')[0];
+        console.log(tabsdiv);
+        if (tabsdiv != null) {
+            information = $('#bookDetailDiv').find('.information');
+            var title = $('#bookDetailDiv').find('.title');
+            title.text(datarecord.firstname);
+            var container = $('<div style="margin: 5px;"></div>')
+            container.appendTo($(information));
+            var photocolumn = $('<div style="float: left; width: 30%;"></div>');
+            var leftcolumn = $('<div style="float: left; width: 50%;"></div>');
+            var rightcolumn = $('<div style="float: left; width: 20%;"></div>');
+            container.append(photocolumn);
+            container.append(leftcolumn);
+            container.append(rightcolumn);
+            var photo = $("<div class='jqx-rc-all' style='margin: 10px;'><b>썸네일:</b></div>");
+            var image = $("<div style='margin-top: 10px;'></div>");
+            var imgurl = datarecord.thumbnail;
+            var img = $('<img height="150" src="' + imgurl + '"/>');
+            image.append(img);
+            image.appendTo(photo);
+            photocolumn.append(photo);
+            var firstname = "<div style='margin: 10px;'><b>도서 제목 :</b> " + datarecord.title + "</div>";
+            var lastname = "<div style='margin: 10px;'><b>소개 :</b> " + MyUtil.substr(datarecord.contents,200) + "</div>";
+            var title = "<div style='margin: 10px;'><b>저자 :</b> " + datarecord.authors + "</div>";
+            var address = "<div style='margin: 10px;'><b>출판사 :</b> " + datarecord.publisher + "</div>";
+            $(leftcolumn).append(firstname);
+            $(leftcolumn).append(lastname);
+            $(leftcolumn).append(title);
+            $(leftcolumn).append(address);
+            var postalcode = "<div style='margin: 10px;'><b>출판일 :</b> " + datarecord.datetime + "</div>";
+            var city = "<div style='margin: 10px;'><b>정가 :</b> " + datarecord.price + " 원</div>";
+            var phone = "<div style='margin: 10px;'><b>판매가 :</b> " + datarecord.sale_price + " 원</div>";
+            $(rightcolumn).append(postalcode);
+            $(rightcolumn).append(city);
+            $(rightcolumn).append(phone);
+            $(tabsdiv).jqxPanel({ width: 750, height: 230, theme: jqxTheme});
+        }
     }
-
 
 };
 

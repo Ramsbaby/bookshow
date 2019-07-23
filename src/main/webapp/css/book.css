@@ -128,6 +128,11 @@ ul, li {
 	height: 96%;
 }
 
+.centerCont {
+	margin-left: 10px;
+	margin-right: 10px;
+	height: 96%;
+}
 .rightCont {
 	margin-left: 10px;
 	margin-right: 10px;
