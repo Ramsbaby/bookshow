@@ -47,13 +47,15 @@ public class SearchHistoryController {
 //        }
 //    }
 
-    @RequestMapping("/getSearchHistoryList.do")
+    @RequestMapping(value = "/getSearchHistoryList.do")
+    @ResponseBody
     public ReturnData getSearchHistoryList(HttpServletRequest req, HttpServletResponse res,
                                     @PageableDefault(size = 10, page = 0, sort = "regdate", direction = Sort.Direction.DESC) Pageable pageable)  {
         try {
             ReturnData returnData= new ReturnData();
             returnData.setResultData(searchHistoryService.getSearchHistoryList(req,res,pageable));
-            return returnData;
+            System.out.println(returnData.getResultData().toString());
+            return new ReturnData(returnData.getResultData());
 
         } catch (Exception e) {
             logger.info(e.getMessage());

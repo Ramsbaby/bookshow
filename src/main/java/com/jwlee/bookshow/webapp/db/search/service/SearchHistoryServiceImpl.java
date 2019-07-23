@@ -44,7 +44,7 @@ public class SearchHistoryServiceImpl implements SearchHistoryService{
             User user = userService.getUser(SessionManager.getUser());
 
             Page<SearchHistory> searchHistoryList = searchHistoryRepository.findByUser(user, pageable);
-            return new ReturnData(searchHistoryList);
+            return new ReturnData(searchHistoryList.getContent());
 
         } catch (Exception e) {
             logger.info(e.getMessage());
