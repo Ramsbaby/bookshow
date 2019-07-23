@@ -104,6 +104,13 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- apache httpclient for RestAPI connect -->
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.5.4</version>
+        </dependency>
+
 
     </dependencies>
 
