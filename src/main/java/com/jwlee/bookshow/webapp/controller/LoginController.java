@@ -101,10 +101,6 @@ public class LoginController extends MsgService {
                 throw new CustomException("비밀번호가 일치하지 않습니다.");
             }
 
-            // 세션에 정보 저장
-//            criterion.addParam("auth", userDto.getAuth());
-//            criterion.addParam("codeId", "EVT_LEVEL");
-
             //MENU 셋팅
             SessionManager.setUser(userId, menuService.getSiteMenuList(reqMap).getResultData());
 

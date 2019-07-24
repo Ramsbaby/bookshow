@@ -21,5 +21,13 @@ public interface SearchHistoryRepository extends JpaRepository<SearchHistory, Lo
 	@Query("SELECT s FROM SearchHistory s WHERE s.user=?1")
     Page<SearchHistory> findByUser(User user, Pageable pageable);
 
+    @Query(value = "SELECT ROWNUM AS RANK, A.* FROM" +
+            "(SELECT COUNT(SEARCH_WORD) AS CNT, SEARCH_WORD\n" +
+            "FROM SEARCH_HISTORY\n" +
+            "GROUP BY SEARCH_WORD\n" +
+            "ORDER BY CNT DESC , SEARCH_WORD ASC LIMIT 10) AS A",
+            nativeQuery=true)
+    List<Map <String, Object>> selectKeywordTopList();
+
 
 }

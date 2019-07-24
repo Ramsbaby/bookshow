@@ -4,14 +4,11 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import com.jwlee.bookshow.common.util.MyUtils;
-import com.jwlee.bookshow.webapp.enums.EnumBookCategory;
-import com.jwlee.bookshow.webapp.enums.EnumBookTarget;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Service

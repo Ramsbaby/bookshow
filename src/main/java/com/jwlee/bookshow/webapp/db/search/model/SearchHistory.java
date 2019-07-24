@@ -16,7 +16,7 @@ import java.sql.Timestamp;
 public class SearchHistory {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(nullable = false)

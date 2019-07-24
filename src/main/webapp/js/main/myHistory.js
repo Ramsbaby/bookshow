@@ -39,10 +39,10 @@ var Main = {
             editable: false,
             columns:
                 [
-                    { text : 'ID', datafield : 'id', width : 150 , columntype: 'custom'},
-                    { text : '검색 일시', datafield : 'regDate', width : 450 , editable:false},
-                    { text : '검색어', datafield : 'searchWord', width : 250 , editable:true, hidden:true},
-                    { text : '검색필드', datafield : 'target', width : 200 , editable:true}
+                    { text : 'ID', datafield : 'id', width : 150 , columntype: 'custom', hidden:true},
+                    { text : '검색 일시', datafield : 'regdate', width : 450 , editable:false},
+                    { text : '검색어', datafield : 'search_word', width : 250 , editable:true},
+                    { text : '검색필드', datafield : 'target', width : 200 , editable:true, hidden:true}
                 ]
         });
 
@@ -58,7 +58,17 @@ var Main = {
     ========================================================================================*/
 
     search: function() {
-        MyGrid.updateBoundData($myHistoryGrid, '/searchHistory/getSearchHistoryList.do');
+        $.ajax({
+            url: "/searchHistory/getSearchHistoryList",
+            data: $('#mainForm').serialize(),
+            beforeSend: function () {},
+            success: function (res) {
+                console.log(res);
+                console.log(toString.call(res.resultData.resultData));
+                MyGrid.setLocalData($myHistoryGrid, res.resultData.resultData);
+            }
+        });
+
     }
 };
 

@@ -36,24 +36,28 @@ public class SearchHistoryController {
     @Resource(name = "searchHistoryService")
     private SearchHistoryService searchHistoryService;
 
-//    @RequestMapping("getDevKind2List")
-//    public @ResponseBody
-//    ReturnData getDevKind2List(@RequestParam Map<String, Object> reqMap) {
-//        try {
-//            return searchHistoryService.searchHistory(reqMap);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return new ReturnData(new ErrorInfo(e));
-//        }
-//    }
-
-    @RequestMapping(value = "/getSearchHistoryList.do")
+    @RequestMapping(value = "/getSearchHistoryList")
     @ResponseBody
     public ReturnData getSearchHistoryList(HttpServletRequest req, HttpServletResponse res,
                                     @PageableDefault(size = 10, page = 0, sort = "regdate", direction = Sort.Direction.DESC) Pageable pageable)  {
         try {
             ReturnData returnData= new ReturnData();
             returnData.setResultData(searchHistoryService.getSearchHistoryList(req,res,pageable));
+            System.out.println(returnData.getResultData().toString());
+            return new ReturnData(returnData.getResultData());
+
+        } catch (Exception e) {
+            logger.info(e.getMessage());
+            return new ReturnData(new ErrorInfo(e));
+        }
+    }
+
+    @RequestMapping(value = "/getKeywordTopList")
+    @ResponseBody
+    public ReturnData getKeywordTopList(HttpServletRequest req, HttpServletResponse res)  {
+        try {
+            ReturnData returnData= new ReturnData();
+            returnData.setResultData(searchHistoryService.getKeywordTopList(req,res));
             System.out.println(returnData.getResultData().toString());
             return new ReturnData(returnData.getResultData());
 

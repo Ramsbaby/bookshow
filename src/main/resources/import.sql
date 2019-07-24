@@ -5,3 +5,16 @@ INSERT INTO USER (USER_ID, PASSWORD, NAME, CELL_TEL, CREATE_DATE) VALUES ('klm',
 INSERT INTO USER (USER_ID, PASSWORD, NAME, CELL_TEL, CREATE_DATE) VALUES ('nop', '1234', '더블에프', 'nop@mail.com', CURRENT_TIMESTAMP());
 INSERT INTO USER (USER_ID, PASSWORD, NAME, CELL_TEL, CREATE_DATE) VALUES ('qqqq', '0c88cc86a73aa7c4058ff7c0e31d6f105c0ca3575d5a68e060e95d9c84a607a9', 'qqqq', 'qqqq', CURRENT_TIMESTAMP());
 
+insert into search_history (id, regdate, search_word, target, user_account) values (1, current_timestamp(),'test','title','abc');
+insert into search_history (id, regdate, search_word, target, user_account) values (2, current_timestamp(),'test','title','abc');
+insert into search_history (id, regdate, search_word, target, user_account) values (3, current_timestamp(),'test2','title','abc');
+insert into search_history (id, regdate, search_word, target, user_account) values (5, current_timestamp(),'test2','title','efg');
+insert into search_history (id, regdate, search_word, target, user_account) values (6, current_timestamp(),'test2','title','efg');
+insert into search_history (id, regdate, search_word, target, user_account) values (7, current_timestamp(),'test2','title','efg');
+insert into search_history (id, regdate, search_word, target, user_account) values (8, current_timestamp(),'test3','title','efg');
+insert into search_history (id, regdate, search_word, target, user_account) values (9, current_timestamp(),'test3','title','efg');
+insert into search_history (id, regdate, search_word, target, user_account) values (10, current_timestamp(),'test4','title','klm');
+insert into search_history (id, regdate, search_word, target, user_account) values (11, current_timestamp(),'test4','title','klm');
+insert into search_history (id, regdate, search_word, target, user_account) values (12, current_timestamp(),'test4','title','efg');
+insert into search_history (id, regdate, search_word, target, user_account) values (13, current_timestamp(),'test4','title','efg');
+insert into search_history (id, regdate, search_word, target, user_account) values (14, current_timestamp(),'test4','title','qqqq');

@@ -35,6 +35,7 @@ var Main = {
             source: Master.enumBookTargetField()});
 
         $('#search-keyword').jqxInput({width: 200, height:21});
+        $('#search-keyword').on('keypress', function(event) { if(event.keyCode == 13) {Main.search(); return false;} return; });
 
 
         MyGrid.create($bookAllGrid, {
@@ -81,35 +82,39 @@ var Main = {
     ========================================================================================*/
 
     search: function() {
+        $('#pageNumber').val(1);
+        if($('#search-keyword').val().isBlank()) {
+            alert('키워드를 입력해주세요.');
+            return;
+        }
+
         $.ajax({
             url: "/ajax/searchBooks",
             data: $('#mainForm').serialize(),
-            beforeSend: function () {
-                console.log($('#mainForm').serialize());
-            },
+            beforeSend: function () {},
             success: function (res) {
                 console.log(res);
                 MyGrid.setLocalData($bookAllGrid, res.resultData.documents);
                 $('#pageLoc')[0].innerText = ($('#pageNumber').val() + ' / ' + res.resultData.meta.total_count);
-
+                $('#pageTotalNumber').val(res.resultData.meta.total_count)
             }
         });
     },
     searchPrev: function() {
 
+        var tempNumber = $('#pageNumber').val();
+        tempNumber > 1 ? $('#pageNumber').val(--tempNumber) : $('#pageNumber').val(1);
+
         $.ajax({
             url: "/ajax/searchBooks",
             data: $('#mainForm').serialize(),
-            beforeSend: function () {
-                console.log($('#mainForm').serialize());
-            },
+            beforeSend: function () {},
             success: function (res) {
                 console.log(res);
                 var data = res.resultData.documents;
                 MyGrid.setLocalData($bookAllGrid, data);
 
-                var tempNumber = $('#pageNumber').val();
-                tempNumber > 1 ? $('#pageNumber').val(--tempNumber) : $('#pageNumber').val(1);
+
 
                 $('#pageLoc')[0].innerText = ($('#pageNumber').val() + ' / ' + res.resultData.meta.total_count);
 
@@ -118,22 +123,19 @@ var Main = {
     },
     searchNext : function() {
 
+        var tempNumber = $('#pageNumber').val();
+        tempNumber < $('#pageTotalNumber').val() ? $('#pageNumber').val(++tempNumber) : $('#pageNumber').val(tempNumber);
+        console.log($('#mainForm').serialize());
 
         $.ajax({
             url: "/ajax/searchBooks",
             data: $('#mainForm').serialize(),
-            beforeSend: function () {
-                console.log($('#mainForm').serialize());
-            },
+            beforeSend: function () {},
             success: function (res) {
                 console.log(res);
                 MyGrid.setLocalData($bookAllGrid, res.resultData.documents);
 
-                var tempNumber = $('#pageNumber').val();
-                tempNumber < res.resultData.documents ? $('#pageNumber').val(++tempNumber) : $('#pageNumber').val(tempNumber);
-
                 $('#pageLoc')[0].innerText = ($('#pageNumber').val() + ' / ' + res.resultData.meta.total_count);
-
             }
         });
     },

@@ -54,20 +54,21 @@
                         </div>
                     </div>
                     <div>
-                        <div>
-                            <div class="searchBox" >
-                                <div>
-                                    <label style="float: left">책 상세 조회 : </label>
+                        <div class="newBox">
+                            <div class="scontent" style="top: 0px;">
+                                <div class="contentsP10">
+
+                                    <div class="searchBox" >
+                                        <div>
+                                            <label style="float: left">책 상세 조회</label>
+                                        </div>
+                                    </div>
+                                    <div id="bookDetailDiv" style='margin: 10px;'>
+                                    </div>
                                 </div>
-                            </div>
-                            <div id="bookDetailDiv" style='margin: 10px; margin-top: 50px'>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div id="pwindow" style="position: absolute;">
-                    <div></div>
-                    <div></div>
                 </div>
             </div>
         </div>

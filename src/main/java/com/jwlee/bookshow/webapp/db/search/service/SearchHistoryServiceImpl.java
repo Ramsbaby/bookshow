@@ -21,6 +21,8 @@ import org.springframework.ui.Model;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.Map;
 
 @Service("searchHistoryService")
 public class SearchHistoryServiceImpl implements SearchHistoryService{
@@ -45,7 +47,17 @@ public class SearchHistoryServiceImpl implements SearchHistoryService{
 
             Page<SearchHistory> searchHistoryList = searchHistoryRepository.findByUser(user, pageable);
             return new ReturnData(searchHistoryList.getContent());
+        } catch (Exception e) {
+            logger.info(e.getMessage());
+            return new ReturnData(new ErrorInfo(e));
+        }
+    }
 
+    @Override
+    public ReturnData getKeywordTopList(HttpServletRequest req, HttpServletResponse res)  {
+        try {
+            List<Map<String,Object>> searchHistoryList = searchHistoryRepository.selectKeywordTopList();
+            return new ReturnData(searchHistoryList);
         } catch (Exception e) {
             logger.info(e.getMessage());
             return new ReturnData(new ErrorInfo(e));

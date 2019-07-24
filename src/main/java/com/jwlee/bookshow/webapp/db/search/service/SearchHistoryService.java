@@ -24,4 +24,6 @@ public interface SearchHistoryService {
 	public ReturnData getSearchHistoryList(HttpServletRequest req, HttpServletResponse res,
 									@PageableDefault(size = 10, page = 0, sort = "regdate", direction = Sort.Direction.DESC) Pageable pageable);
 
+	public ReturnData getKeywordTopList(HttpServletRequest req, HttpServletResponse res);
+
 }
