@@ -1,6 +1,5 @@
 package com.jwlee.bookshow.webapp.db.search.model;
 
-
 import com.jwlee.bookshow.webapp.db.login.model.User;
 import com.jwlee.bookshow.webapp.enums.EnumBookTarget;
 
@@ -34,7 +33,6 @@ public class SearchHistory {
 
 	public SearchHistory() {
 		super();
-
 	}
 
 	public Long getId() {

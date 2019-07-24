@@ -1,13 +1,3 @@
-/* 
-   작성일: 2016-03-30 
-   작성자: 강연아
-   수정일: 
-  
-   테마 css 
-   - 트리/탭/페이징에서 한쪽을 수정하면 같이 바뀌기에 따로 분리해서 작업하는데
-     리소스를 많이 소요해 작업이 어렵습니다.     
- */
-
 /**=======================
 	라운드값 - 그리드/탭/트리 코너 
 ======================== */
@@ -477,45 +467,4 @@
 
 .jqx-button{cursor: pointer;}
 
-/* 삼성 전용 페이징 */
-/* .jqx-grid-pager>div{position: absolute; left:50%; margin-left:-75px;} */
-
-/**=======================
-	2018-09-19
-	FMS CSS 추가 및 수정
-	작성자 : 신은화
-======================== */
-
-/* netis.css
-   추가 및 수정 */
-
 .dashBtn {top:2px!important;}
-
-div[id^=fms].fmsWidget .allStatus {width:100%; height:100%;}
-
-div[id^=fms].fmsWidget .fmsGrp {
-/*div[id^=fms].fmsWidget .fmsGrp {*/
-	box-sizing:border-box;
-	margin:auto;
-	width:60%;
-	height:75%;
-	display:flex;
-	-webkit-display:flex;
-	align-items: center;
-	-webkit-align-items: center;
-}
-
-div[id^=fms].fmsWidget .fmsIcon {width:50%;}
-div[id^=fms].fmsWidget .alarmStatus {width:25%; margin-left: 20%;}
-
-div[id^=fms].fmsWidget .fmsIcon img {max-width:100%; height:100%;}
-div[id^=fms].fmsWidget .alarmStatus img {max-width:100%; height:100%;}
-
-div[id^=fms].fmsWidget .fmsNotes {width:200px; height:25%; margin:auto; padding-top:2.5%; box-sizing:border-box;}
-div[id^=fms].fmsWidget .fmsNotes li {font-weight: bold; float: left; margin-right:12px;}
-div[id^=fms].fmsWidget .fmsNotes li:last-child {margin-right: 0;}
-div[id^=fms].fmsWidget .fmsNotes span { display: inline-block; box-sizing: border-box; width:12px; height:12px; margin-right: 2px;}
-div[id^=fms].fmsWidget .fmsNotes li:nth-child(1) span {background:#f64431; border:1px solid #d83625;}
-div[id^=fms].fmsWidget .fmsNotes li:nth-child(2) span {background:#44ad44; border:1px solid #359435;}
-div[id^=fms].fmsWidget .fmsNotes li:nth-child(3) span {background:#b5b5b5; border:1px solid #9f9f9f;}
-div[id^=fms].fmsWidget .fmsNotes li:nth-child(4) span {background:#feee24; border:1px solid #e8d80f;}

@@ -20,6 +20,11 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Map;
 
+/**
+* AjaxController
+* @author jungwoolee
+* @since 2019-07-24
+**/
 @RestController
 @RequestMapping("ajax/")
 public class AjaxController {
@@ -57,7 +62,6 @@ public class AjaxController {
 		System.out.println(result.toString());
 		searchHistoryService.save(new SearchHistory(searchKeyword, target, Timestamp.valueOf(LocalDateTime.now()), user));
 
-		//
 		return new ReturnData(result);
 	}
 

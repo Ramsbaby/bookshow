@@ -60,24 +60,9 @@ public class MenuServiceImpl extends MsgService implements MenuService {
 	private String createPageMenu(PageDto pageDto,String pageUrl,int pageNumber) {
 		StringBuilder sb = new StringBuilder();
 		sb.append(String.format("<li class='level-1'><a href='%s' class='%s'>%s</a>", pageUrl, pageDto.getWebIconClass(), pageDto.getPageName()));
-//		sb.append(createSubMenu(pageDto.getChildren(),pageUrl, pageNumber, pageDto.getPageName()));
 
 		sb.append("</li>");
 		return sb.toString();
 	}
-
-	/**
-	 * 소메뉴 태그 생성
-	 * 
-	 * @param mnlist
-	 * @return
-	 */
-	private String createSubMenu(String [] mnlist,String pageUrl,int pageNumber, String pageName) {
-		StringBuilder sb = new StringBuilder();
-		sb.append("<ul style='visibility: hidden'>");
-		sb.append("</ul>");
-		return sb.toString();
-	}
-
 
 }

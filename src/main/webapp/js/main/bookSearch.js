@@ -93,7 +93,6 @@ var Main = {
             data: $('#mainForm').serialize(),
             beforeSend: function () {},
             success: function (res) {
-                console.log(res);
                 MyGrid.setLocalData($bookAllGrid, res.resultData.documents);
                 $('#pageLoc')[0].innerText = ($('#pageNumber').val() + ' / ' + res.resultData.meta.total_count);
                 $('#pageTotalNumber').val(res.resultData.meta.total_count)
@@ -101,7 +100,6 @@ var Main = {
         });
     },
     searchPrev: function() {
-
         var tempNumber = $('#pageNumber').val();
         tempNumber > 1 ? $('#pageNumber').val(--tempNumber) : $('#pageNumber').val(1);
 
@@ -110,29 +108,22 @@ var Main = {
             data: $('#mainForm').serialize(),
             beforeSend: function () {},
             success: function (res) {
-                console.log(res);
                 var data = res.resultData.documents;
                 MyGrid.setLocalData($bookAllGrid, data);
 
-
-
                 $('#pageLoc')[0].innerText = ($('#pageNumber').val() + ' / ' + res.resultData.meta.total_count);
-
             }
         });
     },
     searchNext : function() {
-
         var tempNumber = $('#pageNumber').val();
         tempNumber < $('#pageTotalNumber').val() ? $('#pageNumber').val(++tempNumber) : $('#pageNumber').val(tempNumber);
-        console.log($('#mainForm').serialize());
-
+        $('#mainForm').serialize();
         $.ajax({
             url: "/ajax/searchBooks",
             data: $('#mainForm').serialize(),
             beforeSend: function () {},
             success: function (res) {
-                console.log(res);
                 MyGrid.setLocalData($bookAllGrid, res.resultData.documents);
 
                 $('#pageLoc')[0].innerText = ($('#pageNumber').val() + ' / ' + res.resultData.meta.total_count);
@@ -144,9 +135,7 @@ var Main = {
         $('#bookDetailDiv')[0].innerHTML = "<div style='margin: 10px;'><ul style='margin-left: 30px;'><li class='title'></li></ul><div class='information'></div><div class='notes'></div></div>"
         var tabsdiv = null;
         var information = null;
-        var notes = null;
         tabsdiv = $('#bookDetailDiv')[0];
-        console.log(tabsdiv);
         if (tabsdiv != null) {
             information = $('#bookDetailDiv').find('.information');
             var title = $('#bookDetailDiv').find('.title');
@@ -183,7 +172,6 @@ var Main = {
             $(tabsdiv).jqxPanel({ width: 750, height: 230, theme: jqxTheme});
         }
     }
-
 };
 
 

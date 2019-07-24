@@ -62,8 +62,6 @@ var Main = {
             data: $('#mainForm').serialize(),
             beforeSend: function () {},
             success: function (res) {
-                console.log(res);
-                console.log((res.resultData.resultData));
                 MyGrid.setLocalData($bestSellerGrid, res.resultData.resultData);
             }
         });

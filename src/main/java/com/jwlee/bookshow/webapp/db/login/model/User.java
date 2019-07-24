@@ -2,7 +2,6 @@ package com.jwlee.bookshow.webapp.db.login.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.jwlee.bookshow.webapp.common.AbstractEntity;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -50,27 +49,6 @@ public class User {
         this.cellTel = cellTel;
     }
 
-    // 생성시간 포맷변경 메서드
-    public String getFormattedCreateDate() {
-        return getFormattedDate(createDate, "yyyy.MM.dd HH:mm:ss");
-    }
-
-    private String getFormattedDate(LocalDateTime dateTime, String format) {
-        if (dateTime == null) {
-            return "";
-        }
-        return dateTime.format(DateTimeFormatter.ofPattern(format));
-    }
-
-
-    // 아이디 일치확인 메서드
-    public boolean matchId(String newId) {
-        if ( newId == null ) {
-            return false;
-        }
-        return newId.equals(this.userId);
-    }
-
     // 비밀번호 일치확인 매서드
     public boolean matchPassword(String newPassword) {
         if ( newPassword == null ) {
@@ -78,11 +56,8 @@ public class User {
         }
         return newPassword.equals(password);
     }
-
     public User()
-    {
-
-    }
+    {}
 
     public User(String userId, String password, String name, String cellTel)
     {

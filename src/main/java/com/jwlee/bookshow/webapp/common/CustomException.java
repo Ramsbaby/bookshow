@@ -16,13 +16,4 @@ public class CustomException extends RuntimeException {
 		super(message);
 	}
 
-	/**
-	 * Constructor
-	 * @param message	exception message
-	 * @param throwable	exception object
-	 */
-	public CustomException(String message, Throwable throwable) {
-		super(message, throwable);
-	}
-
 }

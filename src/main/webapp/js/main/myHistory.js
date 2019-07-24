@@ -63,8 +63,6 @@ var Main = {
             data: $('#mainForm').serialize(),
             beforeSend: function () {},
             success: function (res) {
-                console.log(res);
-                console.log(toString.call(res.resultData.resultData));
                 MyGrid.setLocalData($myHistoryGrid, res.resultData.resultData);
             }
         });

@@ -11,6 +11,11 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+* ApiService
+* @author jungwoolee
+* @since 2019-07-24
+**/
 @Service
 public class ApiService {
 

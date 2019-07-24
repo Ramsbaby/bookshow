@@ -54,8 +54,7 @@
 
 						<div class="login_copy">
 							Copyright ⓒ
-							<%=Calendar.getInstance().get(Calendar.YEAR)%>
-							<strong>${copyright}</strong> . All rights reserved.
+							<%=Calendar.getInstance().get(Calendar.YEAR)%> . All rights reserved.
 						</div>
 					</div>
 				</div>

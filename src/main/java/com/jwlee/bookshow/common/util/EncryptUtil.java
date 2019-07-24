@@ -2,25 +2,13 @@ package com.jwlee.bookshow.common.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Random;
 
+/**
+* EncryptUtil
+* @author jungwoolee
+* @since 2019-07-24
+**/
 public class EncryptUtil {
-
-    /**
-     * random 8byte salt generator
-     * @return
-     */
-    public static String generateSalt() {
-        Random random = new Random();
-        byte[] salt = new byte[8];
-        random.nextBytes(salt);
-
-        StringBuffer sb = new StringBuffer();
-        for(int i = 0; i < salt.length; i++) {
-            sb.append(String.format("%02x", salt[i]));
-        }
-        return sb.toString();
-    }
 
     /**
      * SHA-256, salt 암호화

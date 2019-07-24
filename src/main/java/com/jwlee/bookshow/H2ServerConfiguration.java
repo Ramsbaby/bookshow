@@ -15,7 +15,6 @@ import java.sql.SQLException;
 * @since 2019-07-22
 **/
 @Configuration
-@Profile("dev")
 public class H2ServerConfiguration {
 
     @Bean

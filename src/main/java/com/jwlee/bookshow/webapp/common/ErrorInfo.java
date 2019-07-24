@@ -20,10 +20,6 @@ public class ErrorInfo implements Serializable {
 	private String code;
 	private String message;
 
-	public ErrorInfo(String message) {
-		this(null, message);
-	}
-
 	public ErrorInfo(String code, String message) {
 		this.code = code;
 		this.message = message;
@@ -38,7 +34,7 @@ public class ErrorInfo implements Serializable {
 			ServletContext sc = reqAttr.getRequest().getServletContext();
 			WebApplicationContext wac = WebApplicationContextUtils.getWebApplicationContext(sc);
 			MessageSource messageSource = (MessageSource) wac.getBean("messageSource");
-			this.code = messageSource.getMessage("msg.prcs.fail.code", null, Locale.getDefault());
+			this.code = messageSource.getMessage("처리 중 에러가 발생했습니다.", null, Locale.getDefault());
 			this.message = messageSource.getMessage("처리 중 에러가 발생했습니다.", null, Locale.getDefault());
 		}
 	}

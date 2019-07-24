@@ -1,18 +1,27 @@
 package com.jwlee.bookshow;
 
+import com.jwlee.bookshow.common.configuration.ServiceLoadbalancerConfiguration;
 import com.jwlee.bookshow.webapp.common.ApiService;
 import com.jwlee.bookshow.webapp.common.SessionManager;
-import com.jwlee.bookshow.webapp.db.login.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
+import org.springframework.cloud.netflix.ribbon.RibbonClient;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.servlet.http.HttpSession;
+
+import static java.lang.String.format;
 
 /**
 * DemoApplication
@@ -22,10 +31,42 @@ import javax.servlet.http.HttpSession;
 @Controller
 @EnableJpaAuditing
 @SpringBootApplication
-public class BookshowApplication implements CommandLineRunner {
+//@RibbonClient(name = "hi-service", configuration = ServiceLoadbalancerConfiguration.class)
+public class BookshowApplication{
+//	private final RestTemplate restTemplate;
+//	private final LoadBalancerClient loadBalancer;
 
 	@Autowired
 	ApiService apiService;
+
+//	public BookshowApplication(RestTemplate restTemplate, LoadBalancerClient loadBalancer) {
+//		this.restTemplate = restTemplate;
+//		this.loadBalancer = loadBalancer;
+//	}
+
+	public static void main(String[] args) {
+		SpringApplication.run(BookshowApplication.class, args);
+	}
+
+//	@Bean
+//	public ApplicationListener<ApplicationReadyEvent> listener1() {
+//		return it -> {
+//			String url = UriComponentsBuilder.fromHttpUrl("http://hi-service/")
+//					.build()
+//					.toUriString();
+//			String response = restTemplate.getForObject(url, String.class);
+//			System.out.println(response);
+//		};
+//	}
+
+//	@Bean
+//	public ApplicationListener<ApplicationReadyEvent> listener2() {
+//		return it -> {
+//			ServiceInstance instance = loadBalancer.choose("hi-service");
+//			System.out.println(format("%s:%d", instance.getHost(), instance.getPort()));
+//		};
+//	}
+
 
 
 	//********************   로그인 페이지 관련   ********************
@@ -47,38 +88,21 @@ public class BookshowApplication implements CommandLineRunner {
 		if(SessionManager.getUser() == null) {
 			return "redirect:/login.do";
 		}
-        return "main/bookSearch";
+		return "main/bookSearch";
 	}
 	@RequestMapping("/main/myHistory.do")
 	String myHistory() throws Exception{
 		if(SessionManager.getUser() == null) {
 			return "redirect:/login.do";
 		}
-        return "main/myHistory";
+		return "main/myHistory";
 	}
 	@RequestMapping("/main/bestSeller.do")
 	String bestSeller() throws Exception{
 		if(SessionManager.getUser() == null) {
 			return "redirect:/login.do";
 		}
-        return "main/bestSeller";
+		return "main/bestSeller";
 	}
 	//********************   메인 페이지 관련   ********************
-
-
-
-	@Override
-	public void run(String... args) throws Exception{
-//		loginRepository.save("test".name("test").cellTel("test").password("test").build());
-
-//		Map<String, Object> result = apiService.searchBooks(isbn, EnumBookTarget.ISBN.getCode(),
-//				EnumBookCategory.전체.getCode(), 1);
-
-	}
-
-	public static void main(String[] args) {
-		SpringApplication.run(BookshowApplication.class, args);
-
-	}
-
 }

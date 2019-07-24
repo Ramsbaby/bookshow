@@ -2,26 +2,19 @@ package com.jwlee.bookshow.webapp.controller;
 
 import com.jwlee.bookshow.webapp.common.ErrorInfo;
 import com.jwlee.bookshow.webapp.common.ReturnData;
-import com.jwlee.bookshow.webapp.common.SessionManager;
-import com.jwlee.bookshow.webapp.db.login.model.User;
-import com.jwlee.bookshow.webapp.db.search.model.SearchHistory;
 import com.jwlee.bookshow.webapp.db.search.service.SearchHistoryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Map;
 
 /**
 * SearchHistoryController

@@ -20,6 +20,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
+/**
+* LoginController
+* @author jungwoolee
+* @since 2019-07-24
+**/
 @RequestMapping("/login")
 @Controller
 public class LoginController extends MsgService {
@@ -128,8 +133,5 @@ public class LoginController extends MsgService {
         }
         return "redirect:/login.do";
     }
-
-
-
 }
 

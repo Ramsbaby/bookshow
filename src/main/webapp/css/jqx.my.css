@@ -6246,7 +6246,7 @@ ol li .jqx-listmenu-item-label:before
     border-right-width: 0;
 }
 
-/** by jjung - grid 하단 필터&클리어 아이콘 */
+/** grid 하단 필터&클리어 아이콘 */
 .jqx-icon-filter
 {
     cursor: pointer;

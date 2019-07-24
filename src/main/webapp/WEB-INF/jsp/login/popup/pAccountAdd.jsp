@@ -8,9 +8,7 @@
 </head>
 <body style="overflow: hidden;">
 <form id="popupAddForm" name="popupAddForm">
-    <!-- Hidden Field 영역 BEGIN -->
     <input type="hidden" id="ctxPath" value="${pageContext.request.contextPath}"/>
-    <!-- Hidden Field 영역 END -->
 
     <div class="p_top_title_bg">
         <div class="p_top_title">

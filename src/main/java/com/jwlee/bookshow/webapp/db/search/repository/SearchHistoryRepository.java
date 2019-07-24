@@ -1,6 +1,5 @@
 package com.jwlee.bookshow.webapp.db.search.repository;
 
-import com.jwlee.bookshow.webapp.common.ReturnData;
 import com.jwlee.bookshow.webapp.db.login.model.User;
 import com.jwlee.bookshow.webapp.db.search.model.SearchHistory;
 import org.springframework.data.domain.Page;

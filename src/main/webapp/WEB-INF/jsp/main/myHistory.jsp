@@ -5,11 +5,6 @@
 <title>BOOK_SHOW_0.0.1</title>
 <%@include file="/inc/inc.jsp" %>
 <script src="${pageContext.request.contextPath}/js/main/myHistory.js"></script>
-<style>
-    #prgrsBar > div > span {
-        left: 0px !important;
-    }
-</style>
 <body>
 <div id="header">
     <%@include file="/inc/header.jsp" %>
@@ -36,9 +31,6 @@
                 </div>
             </div>
         </div>
-    </div>
-
-
     </div>
 </form>
 </body>
